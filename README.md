@@ -144,3 +144,104 @@ How to link Static File:- හරි දැන් අපි බලමු java scr
 				මේ තියෙන්නෙ 5 line එකෙන් තියෙන්නෙ css file එක තියෙන folder  එකට ගිහින් ඒක link කරල තියෙන එක
 
 				මේ 8 line එකේ තියෙන්නේ Html file එක link කරලා තියන එක ඒකට යොදාගෙන තියෙන්නෙ root කියන keyword එක
+				
+How to create Url Routing :-Url Routing කියන්නේ localhost:8080 මේකෙන් පස්සෙ "/" ඒක එක ඇතුලට යනවා
+			    ගිහින් ඒ folder Open වෙන්නෙ කොහොමද කියල... 
+			           උදාහරණයක් විදියට (localhost:8080/file1)
+
+			          මේකෙත් කලින් විදියමයි Server එකක් හදන්න ඕන
+
+				*This code is server (Url Routing)*
+
+				1. var  express = require('express');
+				2. var  app = express();
+				3. var  fs = require('fs');
+				4. var  path = require('path');
+				5. 
+				6. app.get(/^(.+)/,function(req,res){
+				7. 	res.sendfile(req.params[0]+'.html',{root:path.join(__dirname,'views')});
+				8. 	console.log("params is up");
+				9. });
+				10.
+				11. app.listen(8080,function(){
+				12.	console.log("server is up");
+				13. });
+
+				String එක පටන් ගන්න (/^(.+) /) ඕන මේ code එකෙන්,
+				String එකක් හෝ ඊට වැඩි ප්‍රමාණයක් (6 line)
+				
+				අපි යවන request එක parametre එකක් විදිහට params කියන keyword එක zero වෙනි index1 විදියට තියෙන්නෙ
+				(7 වෙනි line එකෙ)
+				අපි මේකෙ file path එක ලේසි වෙන්න path කියන object එක පාවිච්චි කරනවා.(4 line)
+
+Now create HTML fils inside views folder:-
+					හරි දැන් අපි බලමු views කියන Folder එක අතුලෙ file1.html , file2.html කියන file ,දෙකක් හදල
+					 ඒ දෙක UrlRouting කියන server File එකට link කරන්නෙ කොහොමද කියල
+					*Ones a file Code (file1.html)*
+
+						1. <!DOCTYPE html>
+						2. <html>
+						3. <head>
+						4.	<meta charset="utf-8">
+						5.	<title>Documents</title>
+						6. </head>
+						7. <body>
+						8. This is File 1
+						9. </body>
+						10. </html>
+
+					*Secound a file Code (file2.html)*
+
+						1. <!DOCTYPE html>
+						2. <html>
+						3. <head>
+						4.	<meta charset="utf-8">
+						5.	<title>Documents</title>
+						6. </head>
+						7. <body>
+						8. This is File 2
+						9. </body>
+						10. </html>
+
+how to error handling using (try, catch):- හරි දැන් අපි බලම users වැරදිල වෙනස් file path එකක් දුන්නොත්.
+					        ඒ වැරැද්ද try catch method එක use කරල handel කොහොමද කියල
+
+					        කලින් code ඒකම තමයි ඒත් මේ (8-16 line) ට්කට try catch add වෙන්න ඕනේ (UrlRouting.js)
+
+					1. var  express = require('express');
+					2. var  app = express();
+					3. var  fs = require('fs');
+					4. var  path = require('path');
+					5. 
+					6. app.get(/^(.+)/,function(req,res){
+					7. 
+					8. 	 try {
+					9. 	 	if(fs.statSync(path.join(__dirname,'views',req.params[0]+'.html'))){
+					10. 	        res.sendfile(req.params[0]+'.html',{root:path.join(__dirname,'views')});
+					11. 	         console.log("params is up");
+					12.          }	
+					13.        }
+					14.       catch(error){
+					15.	     res.sendfile('404.html',{root:path.join(__dirname,'views')});
+					16.           }
+					17. });
+					18.
+					19. app.listen(8080,function(){
+					20. 	console.log("server is up");
+					21. });
+
+					දැන් අපි HTML file එකක් හදාගෙන වැරදියට input කරාම ඒ file එක පෙන්න විදියට හදන්න ඕන
+					(404 කියල error එකක්)
+
+					  *This code is 404.html*
+
+						1. <!DOCTYPE html>
+						2. <html>
+						3. <head>
+						4.	<meta charset="utf-8">
+						5.	<title>Documents</title>
+						7. </head>
+						8. <body>
+						9. File not found
+						10.</body>
+						11.</html>
