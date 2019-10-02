@@ -5,6 +5,7 @@ NodeJS කියන්නෙ මොකද්ද?  NodeJS කියන්නෙ �
                       java script run කරන්න පුලුවන් වෙන්න හදපු 
                       runtime enviorament එකකට තමයි NodeJS කියන්නෙ.
 
+
 Create recruitment :- This code is server
                      1. var  http = require ('http');
                      2. http.createServer(function(req,res){
