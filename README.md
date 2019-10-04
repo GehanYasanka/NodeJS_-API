@@ -246,3 +246,89 @@ how to error handling using (try, catch):- හරි දැන් අපි බ�
 						9. File not found
 						10.</body>
 						11.</html>
+
+How to GET & POST request in applicatin:-හරි අපි දැන් බලමු URL එකේ GET request එකේ  එන parameters එවන්නේ කොහොමද කියල
+                                         මුලින්ම අපි URL එකෙ මෙහෙම type කරන්න ඕන localhost:8080/?name=gehan 
+					   මේකෙ (?) mark (? Mark එකෙන් පස්සේ තියෙන දේවල් parameters)
+					   එකෙන් පස්සේ name කියන parameters එකට gehan කියන එක සමාන කර ගත්තා
+
+හරි අපි දැන් බලමු get request එකේ එවන parameters කොහොමද අල්ලගන්නේ කියල:-
+
+						1. var  express = require('express');
+						2. var  app = express();
+						3. var  fs = require('fs');
+						4. var  path = require('path');
+
+							//app.use(bodyparse());
+
+						5. app.use('/mycssfile',express.static(__dirname+'/css'));
+						6. app.get("/",function(req,res){
+						7.	res.sendfile('home.html',{root:__dirname});
+						8.	res.send("my name is"+JSON.stringify(req.query.name));
+						9. });
+
+						10. app.listen(8080,function(){
+						11.	console.log("server is up");
+						12.});
+
+						මේකෙ 8 line එකේ තියෙන්නේ අපි කොහොමද එවපු get request එක අල්ල ගත්තේ කියල 
+						අපේ URL එකේ එන data ටික එන්නේ request එකක් විදියට මේකේ req කියල req.query කියල 
+						අපි URL එකේ (?) පස්සේ එන data අල්ල ගන්නේ query කියන keyword එකෙන්
+						 මේකේ JSON.stringify කියල තියෙන්නේ එන දට එක string එකක් විදියට හදාගෙන 
+
+						අපිට ඕන නම්  req.query එකෙන් අපි data ටික අල්ල ගත්ත නිසා
+						MySQL query ගහන්න වගේ Database වැඩවලට පාවිච්චි කරන්න පුළුවන් 
+
+
+					අපි දැන් බලමු home.html එක හරහා කොහොමද post request එකක් අරන් back-end එකට් යවන්නේ කොහොමද කියල
+
+					අපි දැන් බලමු home.html එක හරහා කොහොමද post request එකක් අරන් back-end එකට් යවන්නේ කොහොමද කියල
+						එකට අපි දමේ HTML code එක ගහන්න ඕනෙ අපි link කරපු home.html file එකේ 
+
+						1. <html>
+						2. <head>
+						3.	<link rel="stylesheet" type="text/css" href="mycssfile/style.css">
+						4. </head>
+						5. <body>
+						6. <h1>this is my home page</h1>
+						7.  <form action="/user" method="post">
+						8.  	<input name="username">
+						9.  	<input name="lastname">
+						10.
+						11.  	<button type="submit" >Click me</button>
+						12.  </form>
+						13. </body>
+						14. </html>
+
+						මේකේ  <form action="/user" method="post"> (6 line) හදා ගන්න ඕනේ 
+
+
+අපි කලින් එකේදී ගත්හේ URL එක:- එත් අපි මේකෙදි post  method එක නිසා  req.query කියන එක වෙනස් කරනවා req.body විදියට (14 line)
+			     අපි HTML file එකේ ගත්ත <input name="username"> කියන variable එක මෙතනට දන්නා ඕනේ පස්සේ ඒ දෙක "/user" කියල
+			     අලුතින් හදාගත්ත root එකේ display කරන්න ඕනේ ඒ code එක තම මේ (14 line) වලින් තියෙන්නේ 
+
+get request එකේ data එවන්නේ කොහොමද කියල :-URL එකේ උනාට post request එකේ එවන්නේ body එකේ එකට අපි අලුතින් app.use(bodyparse());
+				            කියල middle-ware import කර ගන්න වෙනවා (5,6 line)
+					    import කර ගත්තට පස්සේ අපිට post request එකත් මේ විදියටම හදන්න පුළුවන් (12-15 line)
+					          
+				1. var  express = require('express');
+				2. var  app = express();
+				3. var  fs = require('fs');
+				4. var  path = require('path');
+				5. var  bodyparser = require('body-parser');
+
+				6. app.use(bodyparser());
+
+				7. app.use('/mycssfile',express.static(__dirname+'/css'));
+				8. app.get("/",function(req,res){
+				9.	res.sendfile('home.html',{root:__dirname});
+				10.	//res.send("my name is"+JSON.stringify(req.query.name));
+				11. });
+				12. app.post("/user",function(req,res){
+				13.	res.sendfile('home.html',{root:__dirname});
+				14.	res.send("my name is"+JSON.stringify(req.body.username)+""+JSON.stringify(req.body.lastname));
+				15. });
+
+				16. app.listen(8080,function(){
+				17.	console.log("server is up");
+				18. });
