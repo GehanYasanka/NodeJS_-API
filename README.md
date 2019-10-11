@@ -425,7 +425,7 @@ get request එකේ data එවන්නේ කොහොමද කියල :-
 					*sessions variable එක සමාන වෙන්නේ session.userid කියන එකට(26 line)
 
 					*අපි මේ sessions එක use කරන ඕනේ (7-9 line) sessions එක use කරලා
-					 data ටික තිය ගත්ද්දී encryption කරන්න ඕන එක තමයි මේ කරලා තියෙන්නේ ( line)
+					 data ටික තිය ගත්ද්දී encryption කරන්න ඕන එක තමයි මේ කරලා තියෙන්නේ
 
 					*(12 line) එකේ sessions එකක් සෙට් වෙලා නම් අපි බලන්න ඕනේ කෙලින්ම login එකට යවන්නේ නැතුව
 					  sessions එකක් තියෙනවද කියල 
