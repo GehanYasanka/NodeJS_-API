@@ -488,3 +488,48 @@ get request එකේ data එවන්නේ කොහොමද කියල :-
 					34. app.listen(8080,function(){
 					35.	console.log("server is up");
 					36. });
+හරි දැන් අපි බලමු MySql use කරලා backend එකේ data use කරන්නේ කොහොමද කියල:-
+
+					* එකට අපිට කලින් විදියටම server එක up කරගන්න (1,2 line)&(16-19 line) ඕනනේ express import කරගන්න ඕනේ
+
+					* මේකෙදි අපි තව වැඩිපුර දෙයක් කරන්න ඕනේ අපි MySql use කරන නිසා එක import කරගන්න ඕනේ (3 line)
+
+					* ඊට කලින් එක install කරගන්න ඕනේ NodeJs cmd එකේ මේ commend එක ගහල npm i mysql --save
+
+					* ඊට පස්සේ අපි xampp server එක run කරලා connection එක හද ගන්න ඕනේ එකට මේ (4-10 line) තියෙන විදියට
+
+					1. var express = require('express');
+					2. var app = express();
+					3. var mysql = require('mysql');
+
+					4. app.get('/',function(req,res){
+					5.  var con = mysql.createConnection({
+					6.  	host:'localhost',
+					7.  	user:'root',
+					8.  	password:'',
+					9.  	database:'test'
+					10.  });
+					11.  con.query("SELECT * FROM student",function(err,result){
+					12.		if(err) throw err;
+					13.		console.log(result);
+					14.  });
+					15. });
+
+					16. app.listen(8080,function(){
+					17.	console.log("Server is up");
+					18.	console.log("listen to port 8080");
+					19. });	
+
+					* අපි connection එක හදාගත්තට පස්සේ අපිඅට අදාල query එක හදා ගන්න (11 line)
+
+					* අපි query එක ලියන්න ඕනේ con.query("SELECT * FROM student",function(err,result)
+
+					* මේකේ function(err,result) error එකක් අවොත් මෙන්න මේ පලවෙනි argument එක තමයි වෙන්නේ
+
+					* ඊට පස්සේ result එක දෙවනියට තියෙන එකට pass වෙනවා
+
+					* ඊට පස්සේ අපිට මේක function එකක් විදියට ඇරගන්න ඕනේ (12,13 line)
+
+					* ඇරගන්න error එකක් තිබ්බොත් error එක throw කරන්න කියල (12 line) 
+
+					* එහෙම නැත්තන් console.log(result); අපේ database එකෙන් එන result එක මේකෙන් print වෙනවා(13 line)
