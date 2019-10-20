@@ -611,8 +611,7 @@ get request එකේ data එවන්නේ කොහොමද කියල :-
 
 						*ඊට පස්සේ මේ result එකේ තියෙන එක row එකක් ගනේ මෙය run වෙන්න ගන්නවා (18-21 line)
 
-						*හරි අපි දැන් table data දන්නා මේ table data එකක් කියන්නේ variable එකක
-						ඒ කියන්නේ this.IndexNo කියන්නේ අපේ Mysql data table එක row name එකක් ඒ වගේ අනිත් ඒවත් 							හදල තියෙනව ඒ ඒ database row වලට අදාල(- line)
+						*හරි අපි දැන් table data දන්නා මේ table data එකක් කියන්නේ variable එකක ඒ කියන්නේ this.IndexNo කියන්නේ අපේ Mysql data table එක row name එකක් ඒ වගේ අනිත් ඒවත් හදල තියෙනව ඒ ඒ database row වලට අදාල(- line)
 
 හරි අපි දැන් බලමු අපි අපේ server file එක හදාගන්න
 
