@@ -533,3 +533,142 @@ get request එකේ data එවන්නේ කොහොමද කියල :-
 					* ඇරගන්න error එකක් තිබ්බොත් error එක throw කරන්න කියල (12 line) 
 
 					* එහෙම නැත්තන් console.log(result); අපේ database එකෙන් එන result එක මේකෙන් print වෙනවා(13 line)
+
+අපි මේකේ කරන්න යන්නේ MySQL වලින් ගත්ත data ටික කොහොමද HTML file එකකට send කරන්නේ කියල
+					*එකට අපි කලින් code එකම ගන්න  ඕනේ එකේ පොඩි වෙනසක් කරන්න ඕනේ ඒ තමි අපි connection එක හදපු එක 					     listen එක ඇතුලේ දන්නා ඕනේ
+					
+					*එකට අපි උඩින්ම global variable එකක් අරන් එක define කරන ඉන්න ඕනේ පස්සේඑකට සමාන කරන්න ඕනේ මේ 					      විදියට
+					
+					app.listen(8080,function(){
+   				        con = mysql.createConnection({
+  					host:'localhost',
+   					user:'root',
+  					password:'',
+   					database:'test'
+  					});
+
+					*server එක start කරන වෙලාවෙම connection එකත් start කරලා හදාගත්තු global variable එකට දාගෙන 					     ඉන්නවා අපිට ඕනේ වෙලාවක use කරන්න පුළුවන් වෙන්න
+
+					*දැන් අපිට තියෙන්නේ අපි හදපු HTML form එකට යව ගන්න
+					
+					*හරි අපිට දැන් මේකෙදි express template engine ටිකක් පාවිච්චි කරන්න වෙනවා ඊට කලින් එක install කරගන්න 					     ඕනේ install මේ commend එකෙන්
+					 (npm install handlebars --save කියන එකෙන්)
+
+					*අපි මේකෙදි handlebars template engine එක තමයි use කරන්නේ
+
+					*එක install කරලා අපි import කරගන්න ඕනේ (4 line)
+
+					*ඊට පස්සේ අපිට මේ handlebars වල වැඩ කරද්දී folder structure එකක් තියෙනවා අපි එක හදාගන්න ඕනේ එකට 					අපි ඉන්න folder එකේ තව views කියල folder එකක් හද ගන්න ඕනේ එක ඇතුලේ layouts කියල තව folder 					  එකක් හදාගන්න ඕනේමේක handlebars වල අනිවාර්යයෙන් කරන්න ඕනේ දෙයක්
+					   අපි මේ අන්‍තීමට  හදාගත්තු layouts කියන folder එක ඇතුලේ  main.handlebars කියල file එකක් හදාගන්න 						ඕනේ එකේ අපි මේ code එක ගහන්න ඕනේ
+					
+						<html>
+ 						  <bod>
+  						   {{{body}}}
+ 						  </bod>
+						</html>
+
+					*මේකේ html වෙනුවට පාවිච්චි වෙන්නේ handlebars තමයි මේ file එක ඇතුලේ තමයි මෙය views පෙන්නන හදන්නේ
+
+					*එතකොට මෙන්න මේ {{{body}}} කියන එකට තමයි අපි එවන්නේ අපේ file එක එතකොට එයා එක replace කර ගන්නවා
+
+					*හැමතිස්සෙම අපිට main.handlebars එක තමයි අපිට පෙන්නනේ
+
+අපේ views ඔක්කොම අපි හදන්නේ අපි කලින් හද ගත්තු views කියන folder එකේ එකේ අපි හද ගන්න ඕනේ student.handlebars කියල file එකක් එකේ ඇතුලේ මේ code එක ගහන්න ඕනේ
+
+					1. <html>
+					2.   <head>
+					3.    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+					4.   </head>
+					5.    <body>
+					6.      <center>
+					7.        <h1>Student Details</h1>
+					8.        <table class="table">
+					9.          <tr>
+					10.            <th>Index No</th>
+					11.            <th>Fname</th>
+					12.            <th>Lname</th>
+					13.            <th>Tel</th>
+					14.          </tr>
+					15.          <tbody>
+					16.            {{#each result}}
+					17.            <tr>
+					18.              <td>{{this.IndexNo}}</td>
+					19.              <td>{{this.Fname}}</td>
+					20.              <td>{{this.Lname}}</td>
+					21.              <td>{{this.Tel}}</td>
+					22.            </tr>
+					23.            {{/each}}
+					24.          </tbody>
+					25.        </table>
+					26.      </center>
+					27.    </body>
+					28.</html>
+
+						*හරි දැන් අපිට body එක ඇතුලේ හද ගන්න ඕනේ (17-22 line)
+
+						*මේකෙදි න අපි (16 line) වල {{#each result}} තියෙන එකේ අපි මේ # ලකුණ ඉස්සරහින් දන්නේ keyword එකක් නම් තමයි
+
+						*මේ  each කියන එක for එකක් වගේ මේ *result* එක අපිට හදාගන්න ඔනේ අපේ server file එක එක අපි ඉස්සරහට බලමු.
+
+						*ඊට පස්සේ මේ result එකේ තියෙන එක row එකක් ගනේ මෙය run වෙන්න ගන්නවා (18-21 line)
+
+						*හරි අපි දැන් table data දන්නා මේ table data එකක් කියන්නේ variable එකක
+						ඒ කියන්නේ this.IndexNo කියන්නේ අපේ Mysql data table එක row name එකක් ඒ වගේ අනිත් ඒවත් 							හදල තියෙනව ඒ ඒ database row වලට අදාල(- line)
+
+හරි අපි දැන් බලමු අපි අපේ server file එක හදාගන්න
+
+					1. var express = require('express');
+					2. var app = express();
+					3. var mysql = require('mysql');
+					4. var handlebars = require('express-handlebars');
+					5. var con;
+					6. app.engine('handlebars',handlebars({defaultLayout:'main'}));
+					7. app.set('view engine','handlebars');
+
+					8. app.get('/',function(req,res){
+					9.  con.query("SELECT * FROM student",function(err,result){
+					10.		if(err) throw err;
+					11.		console.log(result);
+					12.    res.render('student',{
+					13.      result:result
+					14.    });
+					15.  });
+					16. });
+
+					17. app.listen(8080,function(){
+					18.     con = mysql.createConnection({
+					19.     host:'localhost',
+					20.     user:'root',
+					21.     password:'',
+					22.     database:'test'
+					23.   });
+					24.	console.log("Server is up");
+					25.	console.log("listen to port 8080");
+					26. });
+
+					*අපි handlebars එක install කරලා import කරගත්තට පස්සේ අපිඅට handlebars engine එකක් හද ගන්න ඕනේ(4 line)
+
+					*මෙකෙඉදි මේ(6 line) එකේ තියෙන පළවිනි handlebars කියන එක variable එකක් එකට ඕනෑම වචනයක් දෙන්න පුළුවන්
+					මේ (6 line)එකේ දෙවනියට තියෙන handlebars කියන එකෙන් කරලා තියෙන්නේ handlebars object එක use කරන එක එකේදී අපි දෙන්න ඕනේ defaultLayout එක මොකද්ද කියල 
+					එකට අපි කලින් හද ගත්තු views කියන folder එක අත්ලේ හදපු Layouts folder එකේ  main.handlebars කියන file  එක දෙන්න ඕනේ (6 line)
+					මොකද එකෙන් තමයි අපි හදන ඔක්කොම views run වෙන්නේ
+
+					*හරි ඊට පස්සේ අපි views engine එක set කරන්න ඕනේ එකට අපි මේ code එක ගහන්න ඕනේ app.set('view engine','handlebars'); (7 line)
+					මේකෙදි handlebars කියන එක මං කලින් කිව්ව (6 line) එකේ පළවිනි handlebars කියන එක variable එකට සමාන වෙන්න
+			
+					*ඕනේ හරි අපි දැන් engine හදල ඉවරයි
+
+					*හරි දැන් අපි අපේ file එක යවන්න ඕනේ එකට අපි මේ code එක ගහන්න ඕනේ
+
+					*res.render('student') මේකේ render කියන්නේ function එකක් අපි render කරන්න කියනවා අපි කලින් හදපු views folder එක තියෙන student.handlebars කියන file එක
+						මේකෙදි  res.render('student',{
+     							 result:result
+   						        });
+
+					*අපි data යවන්නේ object එකක් විදියට ඒ data ඇතුලේ තියෙනවා
+
+					*අපි මෙතන result:result (13 line) එකේ result කියන variable name එක තමයි pass වෙන්නේ
+
+					*අපිට result වෙනුවට ඕනෙම variable name එකක් දන්නා පුළුවන්.
+
+					*හරි දැන් run කරන්න පුළුවන් අපේ database එකෙන් ගත්තු data ටික backend එකෙන් අරගෙන UI එකට pass කරන්න පුළුවන්.
