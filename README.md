@@ -535,9 +535,9 @@ get request එකේ data එවන්නේ කොහොමද කියල :-
 					* එහෙම නැත්තන් console.log(result); අපේ database එකෙන් එන result එක මේකෙන් print වෙනවා(13 line)
 
 අපි මේකේ කරන්න යන්නේ MySQL වලින් ගත්ත data ටික කොහොමද HTML file එකකට send කරන්නේ කියල
-					*එකට අපි කලින් code එකම ගන්න  ඕනේ එකේ පොඩි වෙනසක් කරන්න ඕනේ ඒ තමි අපි connection එක හදපු එක 					     listen එක ඇතුලේ දන්නා ඕනේ
+					*එකට අපි කලින් code එකම ගන්න  ඕනේ එකේ පොඩි වෙනසක් කරන්න ඕනේ ඒ තමි අපි connection එක හදපු එක listen එක ඇතුලේ දන්නා ඕනේ
 					
-					*එකට අපි උඩින්ම global variable එකක් අරන් එක define කරන ඉන්න ඕනේ පස්සේඑකට සමාන කරන්න ඕනේ මේ 					      විදියට
+					*එකට අපි උඩින්ම global variable එකක් අරන් එක define කරන ඉන්න ඕනේ පස්සේඑකට සමාන කරන්න ඕනේ මේ විදියට
 					
 					app.listen(8080,function(){
    				        con = mysql.createConnection({
@@ -547,19 +547,18 @@ get request එකේ data එවන්නේ කොහොමද කියල :-
    					database:'test'
   					});
 
-					*server එක start කරන වෙලාවෙම connection එකත් start කරලා හදාගත්තු global variable එකට දාගෙන 					     ඉන්නවා අපිට ඕනේ වෙලාවක use කරන්න පුළුවන් වෙන්න
+					*server එක start කරන වෙලාවෙම connection එකත් start කරලා හදාගත්තු global variable එකට දාගෙන ඉන්නවා අපිට ඕනේ වෙලාවක use කරන්න පුළුවන් වෙන්න
 
 					*දැන් අපිට තියෙන්නේ අපි හදපු HTML form එකට යව ගන්න
 					
-					*හරි අපිට දැන් මේකෙදි express template engine ටිකක් පාවිච්චි කරන්න වෙනවා ඊට කලින් එක install කරගන්න 					     ඕනේ install මේ commend එකෙන්
-					 (npm install handlebars --save කියන එකෙන්)
+					*හරි අපිට දැන් මේකෙදි express template engine ටිකක් පාවිච්චි කරන්න වෙනවා ඊට කලින් එක install කරගන්න ඕනේ install මේ commend එකෙන්
+					(npm install handlebars --save කියන එකෙන්)
 
 					*අපි මේකෙදි handlebars template engine එක තමයි use කරන්නේ
 
 					*එක install කරලා අපි import කරගන්න ඕනේ (4 line)
 
-					*ඊට පස්සේ අපිට මේ handlebars වල වැඩ කරද්දී folder structure එකක් තියෙනවා අපි එක හදාගන්න ඕනේ එකට 					අපි ඉන්න folder එකේ තව views කියල folder එකක් හද ගන්න ඕනේ එක ඇතුලේ layouts කියල තව folder 					  එකක් හදාගන්න ඕනේමේක handlebars වල අනිවාර්යයෙන් කරන්න ඕනේ දෙයක්
-					   අපි මේ අන්‍තීමට  හදාගත්තු layouts කියන folder එක ඇතුලේ  main.handlebars කියල file එකක් හදාගන්න 						ඕනේ එකේ අපි මේ code එක ගහන්න ඕනේ
+					*ඊට පස්සේ අපිට මේ handlebars වල වැඩ කරද්දී folder structure එකක් තියෙනවා අපි එක හදාගන්න ඕනේ එකට අපි ඉන්න folder එකේ තව views කියල folder එකක් හද ගන්න ඕනේ එක ඇතුලේ layouts කියල තව folder එකක් හදාගන්න ඕනේමේක handlebars වල අනිවාර්යයෙන් කරන්න ඕනේ දෙයක් අපි මේ අන්‍තීමට  හදාගත්තු layouts කියන folder එක ඇතුලේ  main.handlebars කියල file එකක් හදාගන්න ඕනේ එකේ අපි මේ code එක ගහන්න ඕනේ
 					
 						<html>
  						  <bod>
